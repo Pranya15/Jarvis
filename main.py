@@ -67,7 +67,7 @@ def aiProcess(command):
     except Exception as e:
         print("AI Error:", e)
 
-        # ⚠️ Handle quota error gracefully
+        # Handle quota error gracefully
         if "quota" in str(e):
             return "I am out of credits. Please enable billing."
         return "Sorry, I am unable to connect right now."
@@ -101,7 +101,7 @@ def get_news():
 def processCommand(c):
     c = c.lower()
 
-    # 🌐 Open fixed websites
+    # Open fixed websites
     if "open google" in c:
         webbrowser.open("https://google.com")
 
@@ -114,7 +114,7 @@ def processCommand(c):
     elif "open linkedin" in c:
         webbrowser.open("https://linkedin.com")
 
-    # NEW: Open ANY website dynamically
+    # Open ANY website dynamically
     elif c.startswith("open"):
         site = c.replace("open", "").strip()
         webbrowser.open(f"https://{site}.com")
@@ -124,17 +124,17 @@ def processCommand(c):
     elif "news" in c:
         get_news()
 
-    # NEW: Time feature
+    # Time feature
     elif "time" in c:
         current_time = time.strftime("%H:%M")
         speak(f"The time is {current_time}")
 
-    # NEW: Date feature
+    # Date feature
     elif "date" in c:
         current_date = time.strftime("%d %B %Y")
         speak(f"Today is {current_date}")
 
-    # NEW: Memory feature
+    # Memory feature
     elif "my name is" in c:
         name = c.replace("my name is", "").strip()
         memory["name"] = name
@@ -184,7 +184,7 @@ if __name__ == "__main__":
                 if command:
                     processCommand(command)
                 else:
-                    # 🎙️ Listen again for command
+                    # Listen again for command
                     with sr.Microphone() as source:
                         print("Waiting for command...")
                         audio = recognizer.listen(source, timeout=5, phrase_time_limit=5)
